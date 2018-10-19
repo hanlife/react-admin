@@ -11,7 +11,6 @@ export default () => (
             <Route exact path="/" render={() => <Redirect to="/login" push />} />     
             <Route path="/login" component={WrappedNormalLogin} />
             <Route path="/app" component={Index} />
-            
         </Switch>
     </Router>
 )

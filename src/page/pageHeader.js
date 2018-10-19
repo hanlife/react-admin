@@ -7,9 +7,6 @@ const { Header } = Layout;
 
 
 class PageHeader extends Component{
-    constructor(props){
-        super(props)
-    }
     
     render() {
         return (

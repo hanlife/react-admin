@@ -5,6 +5,57 @@ import { withRouter } from 'react-router'
 const { Sider } = Layout;
 const {SubMenu} = Menu;
 
+const MenuList = [
+    {
+        key: '/app/index',
+        name: '主页',
+        icon: 'user',
+        id: '11',
+        parentId: '0',
+        children: [
+            {
+                key: '/home',
+                name: '主页',
+                id: '1101',
+                parentId: '11'
+            },
+            {
+                key: '/search',
+                name: '搜索页',
+                id: '1101',
+                parentId: '11'
+            }
+        ]
+    }, {
+        key: '/app/component',
+        name: '组件',
+        icon: 'team',
+        id: '12',
+        parentId: '0',
+        children: [
+            {
+                key: '/form',
+                name: '表单',
+                id: '1201',
+                parentId: '12'
+            },
+            {
+                key: '/table',
+                name: '表格',
+                id: '1202',
+                parentId: '12'
+            },
+        ]
+    },
+    {
+        key: '/app/test',
+        name: 'test',
+        icon: 'team',
+        id: '13',
+        parentId: '0',
+        children: []
+    }
+]
 
 function _getKey(pathname) {
     let _defaultKey
@@ -97,54 +148,3 @@ class PageSider extends Component{
 
 export default withRouter(PageSider)
 
-const MenuList = [
-    {
-        key: '/app/index',
-        name: '主页',
-        icon: 'user',
-        id: '11',
-        parentId: '0',
-        children: [
-            {
-                key: '/home',
-                name: '主页',
-                id: '1101',
-                parentId: '11'
-            },
-            {
-                key: '/search',
-                name: '搜索页',
-                id: '1101',
-                parentId: '11'
-            }
-        ]
-    }, {
-        key: '/app/component',
-        name: '组件',
-        icon: 'team',
-        id: '12',
-        parentId: '0',
-        children: [
-            {
-                key: '/form',
-                name: '表单',
-                id: '1201',
-                parentId: '12'
-            },
-            {
-                key: '/table',
-                name: '表格',
-                id: '1202',
-                parentId: '12'
-            },
-        ]
-    },
-    {
-        key: '/app/test',
-        name: 'test',
-        icon: 'team',
-        id: '13',
-        parentId: '0',
-        children: []
-    }
-]
