@@ -2,6 +2,9 @@ import React ,{ Component } from 'react';
 import {Link} from 'react-router-dom';
 import { Layout, Icon, Menu } from 'antd';
 import { withRouter } from 'react-router'
+import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux'
+import { event_toggleSider } from '../reducer/action'
 const { Sider } = Layout;
 const {SubMenu} = Menu;
 
@@ -100,13 +103,20 @@ class PageSider extends Component{
         let pathname = this.props.location.pathname;
         this.state.openKeys = [_getKey(pathname)]
     }
+    onBreakpoint(broken){
+        if((broken && !this.props.data_collapsed) || (!broken && this.props.data_collapsed)){
+            this.props.event_toggleSider()
+        }
+    }
     render() {
         
         return (
             <Sider
                 trigger={null}
                 collapsible
-                collapsed={this.props.collapsed}
+                collapsed={this.props.data_collapsed}
+                breakpoint="md"
+                onBreakpoint={(broken) => { this.onBreakpoint(broken) }}
             >
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" 
@@ -146,5 +156,18 @@ class PageSider extends Component{
     }
 }
 
-export default withRouter(PageSider)
+const mapStateToProps = state => {
+    const { data_collapsed } = state;
+    return {
+        data_collapsed,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ...bindActionCreators({ event_toggleSider, }, dispatch)
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(PageSider));
 

@@ -7,14 +7,18 @@ const { Header } = Layout;
 
 
 class PageHeader extends Component{
+    componentWillMount(){
+        
+    }
     
     render() {
+        const {data_collapsed,event_toggleSider} = this.props;
         return (
             <Header style={{ background: '#fff', padding: 0 }}>
                 <Icon
                   className="trigger"
-                  type={this.props.data_collapsed ? 'menu-unfold' : 'menu-fold'}
-                  onClick={this.props.event_toggleSider}
+                  type={data_collapsed ? 'menu-unfold' : 'menu-fold'}
+                  onClick={event_toggleSider}
                 />
               </Header>
         )
@@ -23,7 +27,6 @@ class PageHeader extends Component{
 
 const mapStateToProps = state => {
     const { data_collapsed } = state;
-   
     return {
         data_collapsed,
     };

@@ -7,12 +7,14 @@ import PageHeader from './pageHeader'
 const { Content } = Layout;
 
 class BaseLayout extends Component {
-
+  componentWillMount(){
+    
+  }
   render() {
     return (
       <div className="layout-box">
         <Layout>
-            <PageSider collapsed={this.props.data_collapsed}/>
+            <PageSider />
             <Layout>
               <PageHeader />
               <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
