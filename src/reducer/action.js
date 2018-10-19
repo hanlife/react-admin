@@ -2,7 +2,8 @@ import {
     ADD_TODO,
     SET_VISIBILITY_FILTER,
     TOGGLE_TODO,
-    ADD_ASYNC
+    ADD_ASYNC,
+    TOGGLE_SIDER
 } from './type'
 
 let nextTodoId = 0
@@ -39,5 +40,11 @@ export const event_toggleTodo = id => {
     return {
         type: TOGGLE_TODO,
         id
+    }
+}
+
+export const event_toggleSider = () => {
+    return {
+        type: TOGGLE_SIDER,
     }
 }
