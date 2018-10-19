@@ -5,7 +5,7 @@ import Load from '../page/Load/load'
 export default [
     {
         name: '主页',
-        path: '/app/index/home',
+        path: '/index/home',
         exact: true,
         component: Loadable({
             loader: () => import('../page/Home/home'),
@@ -14,7 +14,7 @@ export default [
     },
     {
         name: '搜索页',
-        path: '/app/index/search',
+        path: '/index/search',
         component: Loadable({
             loader: () => import('../page/Search/search'),
             loading: () => <Load />
@@ -22,7 +22,7 @@ export default [
     },
     {
         name: '表单',
-        path: '/app/component/form',
+        path: '/component/form',
         component: Loadable({
             loader: () => import('../page/Form/form'),
             loading: () => <Load />
@@ -30,7 +30,7 @@ export default [
     },
     {
         name: '表格',
-        path: '/app/component/table',
+        path: '/component/table',
         component: Loadable({
             loader: () => import('../page/Table/table'),
             loading: () => <Load />

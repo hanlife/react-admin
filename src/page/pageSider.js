@@ -7,7 +7,7 @@ const {SubMenu} = Menu;
 
 const MenuList = [
     {
-        key: '/app/index',
+        key: '/index',
         name: '主页',
         icon: 'user',
         id: '11',
@@ -27,7 +27,7 @@ const MenuList = [
             }
         ]
     }, {
-        key: '/app/component',
+        key: '/component',
         name: '组件',
         icon: 'team',
         id: '12',

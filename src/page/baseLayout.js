@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import { Layout } from 'antd';
-import routesConfig from '../routes/routesConfig'
+
 import PageSider from './pageSider'
 import PageHeader from './pageHeader'
 const { Content } = Layout;
 
-class Index extends Component {
+class BaseLayout extends Component {
 
   render() {
     return (
@@ -18,15 +17,7 @@ class Index extends Component {
               <PageHeader />
               <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
               <div>
-                  {
-                      routesConfig.map((r, key) => (
-                          <Route component={r.component}
-                              exact={!!r.exact}
-                              key={key}
-                              path={r.path}
-                          />
-                      ))
-                  }
+                  {this.props.children}
               </div>
               </Content>
             </Layout>
@@ -43,4 +34,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Index);
+export default connect(mapStateToProps)(BaseLayout);

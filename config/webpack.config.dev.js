@@ -28,6 +28,8 @@ const env = getClientEnvironment(publicUrl);
 // style files regexes
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
@@ -275,6 +277,21 @@ module.exports = {
           // using the extension .module.css
           {
             test: cssModuleRegex,
+            use: getStyleLoaders({
+              importLoaders: 1,
+              modules: true,
+              getLocalIdent: getCSSModuleLocalIdent,
+            }),
+          },
+          {
+            test: lessRegex,
+            exclude: lessModuleRegex,
+            use: getStyleLoaders({ importLoaders: 3 }, 'less-loader'),
+          },
+          // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
+          // using the extension .module.css
+          {
+            test: lessModuleRegex,
             use: getStyleLoaders({
               importLoaders: 1,
               modules: true,
