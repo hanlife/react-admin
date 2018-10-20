@@ -5,6 +5,3 @@ export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER";
 
 // 页面二Type
 export const TOGGLE_TODO = "TOGGLE_TODO";
-
-// 头部导航伸缩控制
-export const TOGGLE_SIDER = "TOGGLE_SIDER";
