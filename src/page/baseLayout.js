@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 
 import PageSider from './pageSider'
 import PageHeader from './pageHeader'
+
 const { Content } = Layout;
 
 class BaseLayout extends Component {
@@ -28,10 +29,8 @@ class BaseLayout extends Component {
             <PageSider collapsed={this.state.collapsed} event_toggle={this.event_toggle}/>
             <Layout>
               <PageHeader collapsed={this.state.collapsed} event_toggle={this.event_toggle}/>
-              <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
-              <div>
-                  {this.props.children}
-              </div>
+              <Content style={{ margin: '0 12px', padding: 8, }}>
+                {this.props.children}
               </Content>
             </Layout>
         </Layout>

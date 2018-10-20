@@ -57,54 +57,64 @@ const MenuList = [
     }
 ]
 
-function _getKey(pathname) {
-    let _defaultKey
-    for (let i = 0; i < MenuList.length; i++) {
-        if (MenuList[i].children.length<=0) {
-            if(pathname === MenuList[i].key){
-                _defaultKey = pathname
-                continue
-            }
-        }
-        for (let j = 0; j < MenuList[i].children.length; j++) {
-           if(pathname === (MenuList[i].key+MenuList[i].children[j].key)){
-                _defaultKey = MenuList[i].key
-                continue;
-           }
-        }
-    }
-    return _defaultKey;
-}
-
 class PageSider extends Component{
     constructor(props){
         super(props)
         this.state = {
-            openKeys:[]
+            collapsed: false,
+            mode: 'inline',
+            openKey: '',
+            selectedKey: '',
+            firstHide: true,
         }
     }
-    rootSubmenuKeys = MenuList.map(v=>{
-        return v.key
-    })
-    onOpenChange = (openKeys) => {
-        const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
-        if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-          this.setState({ openKeys });
-        } else {
-          this.setState({
-            openKeys: latestOpenKey ? [latestOpenKey] : [],
-          });
+
+    static getDerivedStateFromProps (props, state) {
+        if (props.collapsed !== state.collapsed) {
+            const state1 = PageSider.setMenuOpen(props);
+            const state2 = PageSider.onCollapse(props.collapsed);
+
+            return {
+                ...state1,
+                ...state2,
+                firstHide: state.collapsed !== props.collapsed && props.collapsed,  // 两个不等时赋值props属性值否则为false
+                openKey: state.openKey || (!props.collapsed && state1.openKey)
+            }
         }
+        return null;
     }
-    componentWillMount(){
-        let pathname = this.props.location.pathname;
-        this.state.openKeys = [_getKey(pathname)]
+
+    static setMenuOpen = props => {
+        const { pathname } = props.location;
+        return {
+            openKey: pathname.substr(0, pathname.lastIndexOf('/')),
+            selectedKey: pathname
+        };
+    };
+    static onCollapse = (collapsed) => {
+        return {
+            collapsed,
+            // firstHide: collapsed,
+            mode: collapsed ? 'vertical' : 'inline',
+        };
+    };
+    componentDidMount() {
+        const state = PageSider.setMenuOpen(this.props);
+        this.setState(state);
     }
-    onBreakpoint(broken){
-        if((broken && !this.props.collapsed) || (!broken && this.props.collapsed)){
-            this.props.event_toggle()
-        }
-    }
+    menuClick = e => {
+        this.setState({
+            selectedKey: e.key
+        });
+        const { popoverHide } = this.props;     // 响应式布局控制小屏幕点击菜单时隐藏菜单操作
+        popoverHide && popoverHide();
+    };
+    openMenu = v => {
+        this.setState({
+            openKey: v[v.length - 1],
+            firstHide: false,
+        })
+    };
     render() {
         
         return (
@@ -112,14 +122,16 @@ class PageSider extends Component{
                 trigger={null}
                 collapsible
                 collapsed={this.props.collapsed}
-                breakpoint="md"
-                onBreakpoint={(broken) => { this.onBreakpoint(broken) }}
+                breakpoint="lg"
             >
                 <div className="logo" />
-                <Menu theme="dark" mode="inline" 
-                    defaultSelectedKeys={[this.props.location.pathname]}
-                    openKeys={this.state.openKeys}
-                    onOpenChange={this.onOpenChange}
+                <Menu
+                    theme="dark"
+                    mode="inline" 
+                    onClick={this.menuClick}
+                    selectedKeys={[this.state.selectedKey]}
+                    openKeys={this.state.firstHide ? null : [this.state.openKey]}
+                    onOpenChange={this.openMenu}
                 >
                     {
                       MenuList.map( r => {
