@@ -36,4 +36,12 @@ export default [
             loading: () => <Load />
         })
     },
+    {
+        name: '进度条',
+        path: '/component/nprogress',
+        component: Loadable({
+            loader: () => import('../page/Load/nprogress'),
+            loading: () => <Load />
+        })
+    },
 ]

@@ -7,9 +7,6 @@ import '../style/login.less'
 const FormItem = Form.Item;
 
 class Login extends React.Component {
-    constructor(props){
-        super(props)
-    }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {

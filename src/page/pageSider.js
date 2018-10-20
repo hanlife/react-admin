@@ -45,6 +45,12 @@ const MenuList = [
                 id: '1202',
                 parentId: '12'
             },
+            {
+                key: '/nprogress',
+                name: '进度条',
+                id: '1202',
+                parentId: '12'
+            },
         ]
     },
     {

@@ -2,11 +2,12 @@ import React from 'react';
 import BaseComponent from '../baseComponent'
 import PageBreadcrumb from '../pageBreadcrumb'
 
+
 export default class Home extends BaseComponent {
     constructor(props){
       super(props)
       this.state= {
-        dd:111
+        
       }
       this.breadcrumb = [[null, 'Home']]
     }
@@ -18,6 +19,7 @@ export default class Home extends BaseComponent {
         <div>
           <PageBreadcrumb breadcrumb={this.breadcrumb}/>
           Home
+          <div onClick={()=>{this.openSpin()}}>openSpin</div>
         </div>
       );
     }
