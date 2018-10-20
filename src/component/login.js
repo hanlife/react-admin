@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { withRouter } from 'react-router'
+import {Storage} from '../uitl'
 import '../style/login.less'
 
 const FormItem = Form.Item;
@@ -14,12 +15,13 @@ class Login extends React.Component {
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log('Received values of form: ', values);
+            console.log(Storage.get('username'))
             this.props.history.push('/index/home')
           }
         });
     }
     componentWillMount(){
-        
+        Storage.set("username",{name:"hanlaifu"})
     }
     render() {
         const { getFieldDecorator } = this.props.form;
