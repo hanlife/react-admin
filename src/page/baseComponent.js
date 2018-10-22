@@ -5,25 +5,25 @@ import 'nprogress/nprogress.css';
 
 export default class BaseComponent extends React.Component {
     // 顶部进度条
-    static nprogressStart = () => {
+    nprogressStart = () => {
         NProgress.start();
     };
-    static nprogressDone = () => {
+    nprogressDone = () => {
         NProgress.done();
     };
     // 加载中
-    static openSpin(){
+    openSpin(){
         BaseLayout.openSpin()
     }
 
     /**
      * 关闭等待弹窗
     */
-    static closeSpin() {
+    closeSpin() {
         BaseLayout.closeSpin()
     }
     
-    static common(){
+    common(){
         console.log('common')
     }
 }

@@ -3,6 +3,7 @@ import { Layout, Spin  } from 'antd';
 
 import PageSider from './pageSider'
 import PageHeader from './pageHeader'
+import RouterTabs from './routerTabs'
 
 const { Content } = Layout;
 
@@ -59,6 +60,7 @@ class BaseLayout extends Component {
             <PageSider collapsed={this.state.collapsed} event_toggle={this.event_toggle}/>
             <Layout>
               <PageHeader collapsed={this.state.collapsed} event_toggle={this.event_toggle}/>
+              <RouterTabs />
               <Spin size='large' spinning={this.state.spinning}>
                 <Content style={{ margin: '0 12px', padding: 8, }}>
                   {this.props.children}
