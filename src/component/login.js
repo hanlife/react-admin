@@ -2,6 +2,7 @@ import React from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { withRouter } from 'react-router'
 import {Storage} from '../uitl'
+import Service from '../axios/service'
 import '../style/login.less'
 
 const FormItem = Form.Item;
@@ -13,6 +14,8 @@ class Login extends React.Component {
           if (!err) {
             console.log('Received values of form: ', values);
             console.log(Storage.get('username'))
+            // 登录接口
+            Service.getLogin(values).then(data=> {console.log(data)})
             this.props.history.push('/index/home')
           }
         });

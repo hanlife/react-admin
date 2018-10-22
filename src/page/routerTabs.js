@@ -42,9 +42,6 @@ const HomePath = '/index/home'
 class RouterTabs extends React.Component{
 
     static unListen = null;
-    static defaultProps = {
-        initialValue: [],
-    };
 
     constructor(props) {
         super(props);
@@ -157,9 +154,10 @@ class RouterTabs extends React.Component{
     };
 
     handleClickTag = (tag, e) => {
-        console.log(e.target.tagName)
-        if (e && e.target.tagName.toLowerCase() === 'i' || e.target.tagName.toLowerCase() === 'svg' || e.target.tagName.toLowerCase() === 'path') {
-            return;
+        if(e) {
+            if (e.target.tagName.toLowerCase() === 'i' || e.target.tagName.toLowerCase() === 'svg' || e.target.tagName.toLowerCase() === 'path') {
+                return;
+            }
         }
         if (tag !== this.state.currentPageName) {
             this.props.history.push({

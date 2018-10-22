@@ -41,7 +41,6 @@ class BaseLayout extends Component {
   componentWillMount(){
     // 实现等待弹窗控制
     SpinControl = (state) => {
-      console.log(state)
       if (state === this.state.spinning) return;
       this.setState({
           spinning: state

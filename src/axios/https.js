@@ -1,24 +1,21 @@
 import axios from 'axios';
 import qs from "qs";
-import BaseLayout from './baseLayout'
-import { message } from 'antd';
+import BaseLayout from '../page/baseLayout'
 
 // 创建axios默认请求
-axios.defaults.baseURL = "/";
+axios.defaults.baseURL = "http://localhost:3001";
 // 配置超时时间
 axios.defaults.timeout = 100000;
 // 配置请求拦截
 axios.interceptors.request.use(config => {
-  config.setHeaders([
-    // 在这里设置请求头与携带token信息
-
-  ]);
-  return config;
+  if (sessionStorage.getItem('token') !== undefined) { // 判断是否存在token，如果存在的话，则每个http header都加上token
+    config.headers.sessid_id = sessionStorage.getItem('token')
+  }
+  return config
 });
 // 添加响应拦截器
 axios.interceptors.response.use(
   function(response) {
-    console.log(response);
     return response;
   },
   function(error) {
@@ -80,7 +77,6 @@ Api.post = function(url, data, loading=false) {
     axios
       .post(url, data)
       .then(res => {
-        console.log(res);
         
         // 请求数量减一
         Api.requestNum--;
