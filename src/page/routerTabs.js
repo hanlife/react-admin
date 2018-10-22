@@ -37,6 +37,7 @@ const getTitleByPathname = (pathname) => {
     return routerInfo;
 }
 
+const HomePath = '/index/home'
 
 class RouterTabs extends React.Component{
 
@@ -48,8 +49,8 @@ class RouterTabs extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            currentPageName: '/index/home', // 当前路由对应到 pathname
-            refsTag: ['/index/home'], // tabs 所有到所有页签
+            currentPageName: HomePath, // 当前路由对应到 pathname
+            refsTag: [HomePath], // tabs 所有到所有页签
             searchMap: {}, // 每个 页签对应的路由参数
         };
         this.handleMenuClick = this.handleMenuClick.bind(this);
@@ -93,6 +94,7 @@ class RouterTabs extends React.Component{
           }, 100);
         });
         const { pathname } = this.props.location;
+        this.defaultRefsTag(pathname);
         this.scrollIntoTags(pathname);
     }
 
@@ -103,7 +105,18 @@ class RouterTabs extends React.Component{
           this.unListen = null;
         }
     }
-
+    // 初始化tags
+    defaultRefsTag(pathname) {
+        if(pathname === this.state.currentPageName){
+            return
+        }else{
+            let newRefsTag = [...this.state.refsTag, pathname]
+            this.setState({
+                currentPageName: pathname,
+                refsTag: newRefsTag,
+            });
+        }
+    }
     scrollIntoTags(pathname) {
         let dom;
         try {
@@ -144,7 +157,8 @@ class RouterTabs extends React.Component{
     };
 
     handleClickTag = (tag, e) => {
-        if (e && e.target.tagName.toLowerCase() === 'i') {
+        console.log(e.target.tagName)
+        if (e && e.target.tagName.toLowerCase() === 'i' || e.target.tagName.toLowerCase() === 'svg' || e.target.tagName.toLowerCase() === 'path') {
             return;
         }
         if (tag !== this.state.currentPageName) {
@@ -161,12 +175,12 @@ class RouterTabs extends React.Component{
         let newRefsTag;
         if (eKey === '1') {
             // 关闭所有
-            newRefsTag = ['/index/home'];
-            currentPathname = '/index/home';
+            newRefsTag = [HomePath];
+            currentPathname = HomePath;
         } else if (eKey === '2') {
             // 关闭其他
-            newRefsTag = ['/index/home'];
-            if (currentPathname !== '/index/home') {
+            newRefsTag = [HomePath];
+            if (currentPathname !== HomePath) {
               newRefsTag.push(currentPathname);
             }
         } else {
