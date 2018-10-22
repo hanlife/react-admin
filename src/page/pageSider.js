@@ -1,67 +1,12 @@
 import React ,{ Component } from 'react';
 import {Link} from 'react-router-dom';
 import { Layout, Icon, Menu } from 'antd';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+import MenuList from '../routes/menu';
+
 const { Sider } = Layout;
 const {SubMenu} = Menu;
 
-const MenuList = [
-    {
-        key: '/index',
-        name: '主页',
-        icon: 'user',
-        id: '11',
-        parentId: '0',
-        children: [
-            {
-                key: '/home',
-                name: '主页',
-                id: '1101',
-                parentId: '11'
-            },
-            {
-                key: '/search',
-                name: '搜索页',
-                id: '1101',
-                parentId: '11'
-            }
-        ]
-    }, {
-        key: '/component',
-        name: '组件',
-        icon: 'team',
-        id: '12',
-        parentId: '0',
-        children: [
-            {
-                key: '/form',
-                name: '表单',
-                id: '1201',
-                parentId: '12'
-            },
-            {
-                key: '/table',
-                name: '表格',
-                id: '1202',
-                parentId: '12'
-            },
-            {
-                key: '/nprogress',
-                name: '进度条',
-                id: '1202',
-                parentId: '12'
-            },
-        ]
-    },
-    {
-        key: '/app/test',
-        name: 'test',
-        icon: 'team',
-        id: '13',
-        parentId: '0',
-        children: []
-    }
-]
 
 class PageSider extends Component{
     constructor(props){
