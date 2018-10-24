@@ -44,4 +44,12 @@ export default [
             loading: () => <Load />
         })
     },
+    {
+        name: '动画',
+        path: '/component/transition',
+        component: Loadable({
+            loader: () => import('../page/Transition/transition'),
+            loading: () => <Load />
+        })
+    },
 ]

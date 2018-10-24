@@ -44,6 +44,12 @@ export default [
                 id: '1202',
                 parentId: '12'
             },
+            {
+                key: '/transition',
+                name: '动画',
+                id: '1203',
+                parentId: '12'
+            },
         ]
     },
     {

@@ -36,6 +36,7 @@ class PageSider extends Component{
     }
 
     static setMenuOpen = props => {
+        
         const { pathname } = props.location;
         return {
             openKey: pathname.substr(0, pathname.lastIndexOf('/')),
@@ -52,6 +53,14 @@ class PageSider extends Component{
     componentDidMount() {
         const state = PageSider.setMenuOpen(this.props);
         this.setState(state);
+        // 监听routerTabs路由变化
+        this.props.history.listen((_location) => {
+            const { pathname } = _location;
+            this.setState({
+                openKey: pathname.substr(0, pathname.lastIndexOf('/')),
+                selectedKey: pathname
+            });
+        })
     }
     menuClick = e => {
         this.setState({
