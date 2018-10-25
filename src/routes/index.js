@@ -36,7 +36,7 @@ export default () => (
                                     />
                                 ))
                             }
-                            <Redirect to='/404'/>
+                            <Redirect to='/index/home'/>
                         </Switch>
                     </BaseLayout>
                 )

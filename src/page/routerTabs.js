@@ -222,52 +222,54 @@ class RouterTabs extends React.Component{
         });
         this.tags = tags;
         return (
-            <div className="router-tabs" style={{
-              height: '40px',
-              maxHeight: '40px',
-              lineHeight: '40px',
-            }}>
-              <div style={{
-                flex: '1',
-                height: '40px',
-                position: 'relative',
-                overflow: 'hidden',
-                background: '#f0f0f0',
-                padding: '0px 0px',
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  whiteSpace: 'nowrap',
-                  width: '100%',
-                  top: '0px',
-                  padding: '0px 10px 0px 10px',
-                  overflowX: 'auto',
-                }}>
-                  {tags}
+            <div>
+                <div className="router-tabs" style={{
+                    height: '40px',
+                    maxHeight: '40px',
+                    lineHeight: '40px',
+                    }}>
+                    <div style={{
+                        flex: '1',
+                        height: '40px',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        background: '#f0f0f0',
+                        padding: '0px 0px',
+                    }}>
+                        <div style={{
+                        position: 'absolute',
+                        whiteSpace: 'nowrap',
+                        width: '100%',
+                        top: '0px',
+                        padding: '0px 10px 0px 10px',
+                        overflowX: 'auto',
+                        }}>
+                        {tags}
+                        </div>
+                    </div>
+                    <div style={{
+                        width: '96px',
+                        height: '100%',
+                        background: '#fff',
+                        boxShadow: '-3px 0 15px 3px rgba(0,0,0,.1)',
+                    }}>
+                        <Dropdown overlay={<Menu onClick={this.handleMenuClick}>
+                        <Menu.Item key="1">关闭所有</Menu.Item>
+                        <Menu.Item key="2">关闭其他</Menu.Item>
+                        <SubMenu title="切换标签">
+                            {
+                            tags.map(item => (<Menu.Item key={item.key}>{item.props.children}</Menu.Item>))
+                            }
+                        </SubMenu>
+                        </Menu>}
+                        >
+                        <Tag size={'small'} color="#2d8cf0"
+                            style={{ marginLeft: 9 }}>
+                            标签选项 <Icon type="down" />
+                        </Tag>
+                        </Dropdown>
+                    </div>
                 </div>
-              </div>
-              <div style={{
-                width: '96px',
-                height: '100%',
-                background: '#fff',
-                boxShadow: '-3px 0 15px 3px rgba(0,0,0,.1)',
-              }}>
-                <Dropdown overlay={<Menu onClick={this.handleMenuClick}>
-                  <Menu.Item key="1">关闭所有</Menu.Item>
-                  <Menu.Item key="2">关闭其他</Menu.Item>
-                  <SubMenu title="切换标签">
-                    {
-                      tags.map(item => (<Menu.Item key={item.key}>{item.props.children}</Menu.Item>))
-                    }
-                  </SubMenu>
-                </Menu>}
-                >
-                  <Tag size={'small'} color="#2d8cf0"
-                    style={{ marginLeft: 9 }}>
-                    标签选项 <Icon type="down" />
-                  </Tag>
-                </Dropdown>
-              </div>
             </div>
           );
     }

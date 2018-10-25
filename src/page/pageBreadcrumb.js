@@ -12,6 +12,7 @@ class PageBreadcrumb extends Component{
         return (
             <Breadcrumb className="breadcrumb-box">
                 <Breadcrumb.Item><Link to='/index/home'>主页</Link></Breadcrumb.Item>
+                {/* [['/home', '首页'],[null, '页面1']] */}
                 {
                     breadcrumb.map((v,index)=>{
                         return (

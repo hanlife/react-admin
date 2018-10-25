@@ -25,7 +25,7 @@ export default [
         path: '/component/form',
         component: Loadable({
             loader: () => import('../page/Form/form'),
-            loading: () => <Load />
+            loading: () => <Load />,
         })
     },
     {
