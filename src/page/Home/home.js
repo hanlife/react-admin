@@ -1,7 +1,6 @@
 import React from 'react';
 import BaseComponent from '../baseComponent'
 import PageBreadcrumb from '../pageBreadcrumb'
-import Service from '../../axios/service'
 
 
 export default class Home extends BaseComponent {
@@ -21,6 +20,7 @@ export default class Home extends BaseComponent {
           <PageBreadcrumb breadcrumb={this.breadcrumb}/>
           Home
           <div onClick={()=>{this.openSpin()}}>openSpin</div>
+          <a href="/static/resources/demo.html?ddd" target="_blank">调转demo.html</a>
         </div>
       );
     }
