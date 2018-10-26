@@ -52,4 +52,12 @@ export default [
             loading: () => <Load />
         })
     },
+    {
+        name: 'APP',
+        path: '/app',
+        component: Loadable({
+            loader: () => import('../page/Transition/transition'),
+            loading: () => <Load />
+        })
+    },
 ]

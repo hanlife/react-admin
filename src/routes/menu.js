@@ -53,7 +53,7 @@ export default [
         ]
     },
     {
-        key: '/app/test',
+        key: '/app',
         name: 'test',
         icon: 'team',
         id: '13',
