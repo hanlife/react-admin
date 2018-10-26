@@ -17,6 +17,7 @@ const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -463,6 +464,10 @@ module.exports = {
       fileName: 'asset-manifest.json',
       publicPath: publicPath,
     }),
+    //把指定文件夹下的文件复制到指定的目录
+    new TransferWebpackPlugin([
+      {from: 'resources', to : 'static/resources'}
+    ], paths.appSrc),
     // Moment.js is an extremely popular library that bundles large locale files
     // by default due to how Webpack interprets its code. This is a practical
     // solution that requires the user to opt into importing specific locales.

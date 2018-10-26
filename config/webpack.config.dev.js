@@ -12,6 +12,7 @@ const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const ManifestPlugin = require('webpack-manifest-plugin');
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 
 
@@ -384,6 +385,10 @@ module.exports = {
       fileName: 'asset-manifest.json',
       publicPath: publicPath,
     }),
+    //把指定文件夹下的文件复制到指定的目录
+    new TransferWebpackPlugin([
+        {from: 'resources', to : 'static/resources'}
+    ], paths.appSrc)
   ],
 
   // Some libraries import Node modules but don't use them in the browser.
