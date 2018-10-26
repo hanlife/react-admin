@@ -8,20 +8,32 @@ import '../style/login.less'
 const FormItem = Form.Item;
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            backUrl: null
+        }
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log('Received values of form: ', values);
-            console.log(Storage.get('username'))
+            Storage.set("username",{name:"hanlaifu"})
             // 登录接口
-            Service.getLogin(values).then(data=> {console.log(data)})
-            this.props.history.push('/index/home')
+            Service.getLogin(values).then(data=> {
+                if(!this.state.backUrl){
+                    this.props.history.push('/index/home')
+                }else{
+                    this.props.history.push(decodeURIComponent(this.state.backUrl))
+                }
+            })
           }
         });
     }
     componentWillMount(){
-        Storage.set("username",{name:"hanlaifu"})
+        let {backUrl} = this.props.match.params
+        this.setState({backUrl})
     }
     render() {
         const { getFieldDecorator } = this.props.form;

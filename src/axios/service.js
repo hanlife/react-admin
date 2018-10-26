@@ -59,10 +59,12 @@ Service.getLocalUserInfo = function () {
         return localUserInfo;
     }
     // 本地用户信息
-    let userInfo = Storage.get('USER_INFO');
+    let userInfo = Storage.get('username');
     if (userInfo === null) {
         Service.message.error('您还没有登录，请先登录！');
-        window.location.href = window.location.host + '/login'
+        let params = window.location.pathname;
+        console.log(window.location.host + '/login/' + encodeURIComponent(params))
+        window.location.href = "http://"+window.location.host + '/login/' + encodeURIComponent(params);
     }
     return localUserInfo = userInfo;
 };
@@ -73,7 +75,7 @@ Service.getLocalUserInfo = function () {
  */
 Service.setLocalUserInfo = function (params) {
     // 设置本地用户信息
-    Storage.set('USER_INFO', params);
+    Storage.set('username', params);
     // 重置内存里的用户信息
     localUserInfo = null;
 };
@@ -109,6 +111,11 @@ Service.getLogin = function(params){
     }
     
     return Api.post('/test', request).then(Service.handleCommonError);
+}
+// 退出
+Service.logout = async function() {
+    Service.setLocalUserInfo({});
+    return true;
 }
 
 // 测试加载

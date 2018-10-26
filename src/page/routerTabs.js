@@ -79,10 +79,13 @@ class RouterTabs extends React.Component{
           if (newRefsTag.indexOf(currentPathname) === -1) {
             newRefsTag.push(currentPathname);
           }
-          this.state.searchMap[pathname] = _location.search;
+        //   this.state.searchMap[pathname] = _location.search;
           this.setState({
             currentPageName: pathname,
             refsTag: newRefsTag,
+            searchMap: {
+                pathname: _location.search
+            }
           });
           // 假如是新的 导航item 添加进来,需要在 添加完成后调用 scrollIntoTags
           clearTimeout(this.tagChangeTimerId);
