@@ -1,9 +1,10 @@
 import axios from 'axios';
 import qs from "qs";
 import BaseLayout from '../page/baseLayout'
+import Config from '../config'
 
 // 创建axios默认请求
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = Config['DEFAULT_API_PATH'];
 // 配置超时时间
 axios.defaults.timeout = 100000;
 // 配置请求拦截

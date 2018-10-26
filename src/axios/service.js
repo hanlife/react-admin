@@ -1,6 +1,7 @@
 import Api from './https'
 import {message} from 'antd';
 import {Storage} from '../uitl';
+import Config from '../config'
 
 const Service = {};
 
@@ -36,7 +37,8 @@ Service.handleCommonError = function (res) {
            resolve(data);
         } else if (parseInt(data.code) === -8) {
             Service.message.error("登陆过期，请重新登录！", 2, () => {
-                window.location.href = window.location.host + '/login'
+                let params = window.location.pathname;
+                window.location.href = Config['BATH_PATH'] + '/login/' + encodeURIComponent(params);
             });
         } else {
             reject(data.message);
@@ -63,8 +65,7 @@ Service.getLocalUserInfo = function () {
     if (userInfo === null) {
         Service.message.error('您还没有登录，请先登录！');
         let params = window.location.pathname;
-        console.log(window.location.host + '/login/' + encodeURIComponent(params))
-        window.location.href = "http://"+window.location.host + '/login/' + encodeURIComponent(params);
+        window.location.href = Config['BATH_PATH'] + '/login/' + encodeURIComponent(params);
     }
     return localUserInfo = userInfo;
 };
