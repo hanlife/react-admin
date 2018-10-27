@@ -15,6 +15,8 @@ export default class Home extends BaseComponent {
         <div>
           <PageBreadcrumb breadcrumb={this.breadcrumb}/>
           搜索
+          <div onClick={()=>{this.openSpin()}}>openSpin</div>
+          <a href="/static/resources/demo.html?ddd" target="_blank">调转demo.html</a>
         </div>
       );
     }

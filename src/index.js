@@ -8,6 +8,7 @@ import {createStore,applyMiddleware,compose} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from "redux-thunk";
 import Routes from './routes/index'
+import './service'
 
 import rootReducer from './reducer';
 

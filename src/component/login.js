@@ -1,11 +1,79 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { withRouter } from 'react-router'
+import Particles from 'react-particles-js'
 import {Storage} from '../uitl'
 import Service from '../axios/service'
 import '../style/login.less'
 
 const FormItem = Form.Item;
+// 粒子效果配置
+const particlesConfig =  {
+    particles: {
+        number: {
+            value: 120,
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            value: "#ffffff"
+        },
+        shape: {
+            type: "circle",
+            stroke: {
+                width: 0,
+                color: "#000000"
+            },
+            polygon: {
+                nb_sides: 5
+            }
+        },
+        opacity: {
+            value: 0.5,
+            random: true,
+            anim: {
+                enable: true,
+                speed: 2,
+                opacity_min: 0.1,
+                sync: false
+            }
+        },
+        size: {
+            value: 5,
+            random: true,
+            anim: {
+                enable: false,
+                speed: 40,
+                size_min: 0.1,
+                sync: false
+            }
+        },
+        line_linked: {
+            shadow: {
+                enable: false,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.4,
+                width: 1
+            }
+        }
+    },
+    interactivity:{
+        events: {
+            onhover: {
+                enable: true,
+                mode: "grab"
+            },
+            onclick: {
+                enable: true,
+                mode: "repulse"
+            },
+            resize: true
+        },
+    }
+}
 
 class Login extends React.Component {
     constructor(props) {
@@ -39,6 +107,17 @@ class Login extends React.Component {
         const { getFieldDecorator } = this.props.form;
         return(
             <div className="login-page">
+                <Particles 
+                    params={particlesConfig}
+                    className="particles"
+                    style={{
+                        width: '100%',
+                        height: '100%'
+                    }}
+                />
+                <ul className="login_bg">
+                    <li></li>
+                </ul>
                 <Form onSubmit={this.handleSubmit} className="login-form">
                     <FormItem>
                         {getFieldDecorator('userName', {
